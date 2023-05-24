@@ -1,0 +1,3 @@
+C:\source\Курсовая работа C++ FM\FM-manager\CppCLR_WinFormsProject1\Debug\CppCLR_WinFormsProject1.vcxproj.AssemblyReference.cache
+C:\source\Курсовая работа C++ FM\FM-manager\CppCLR_WinFormsProject1\Debug\CppCLR_WinFormsProject1.vcxproj.SuggestedBindingRedirects.cache
+C:\source\Курсовая работа C++ FM\FM-manager\CppCLR_WinFormsProject1\Debug\CppCLR_WinFormsProject1.exe
