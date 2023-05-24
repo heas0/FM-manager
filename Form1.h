@@ -34,6 +34,9 @@ namespace CppCLRWinFormsProject {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::Label^ label1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +51,47 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Form1";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->SuspendLayout();
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(42, 62);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(137, 17);
+			this->checkBox1->TabIndex = 0;
+			this->checkBox1->Text = L"click to change the text";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &Form1::checkBox1_CheckedChanged);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(41, 17);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(24, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"test";
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(284, 261);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->checkBox1);
+			this->Name = L"Form1";
+			this->Text = L"Form1";
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
+	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		System::String^ text = "Successful!";
+		label1->Text = text;
+	}
 	};
 }
