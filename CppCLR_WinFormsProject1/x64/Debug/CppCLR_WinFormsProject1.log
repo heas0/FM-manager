@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  AssemblyInfo.cpp
+  CppCLR_WinFormsProject.cpp
+  Form1.cpp
+  Создание кода...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  AssemblyInfo.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  CppCLR_WinFormsProject1.vcxproj -> C:\source\Курсовая работа C++ FM\CppCLR_WinFormsProject1\x64\Debug\CppCLR_WinFormsProject1.exe
