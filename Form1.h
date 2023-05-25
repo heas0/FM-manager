@@ -33,8 +33,6 @@ namespace CppCLRWinFormsProject {
 				delete components;
 			}
 		}
-
-
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem1;
 	private: System::Windows::Forms::SplitContainer^ splitContainer3;
@@ -47,7 +45,6 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton6;
 	private: System::Windows::Forms::TreeView^ treeView2;
 	private: System::Windows::Forms::SplitContainer^ splitContainer2;
-
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::SplitContainer^ splitContainer1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
@@ -67,22 +64,6 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^ components;
 		   /// <summary>
 		   /// Required designer variable.
@@ -97,15 +78,22 @@ namespace CppCLRWinFormsProject {
 		   void InitializeComponent(void)
 		   {
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
+			   System::Windows::Forms::TreeNode^ treeNode1 = (gcnew System::Windows::Forms::TreeNode(L"Узел4"));
+			   System::Windows::Forms::TreeNode^ treeNode2 = (gcnew System::Windows::Forms::TreeNode(L"Узел3", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode1 }));
+			   System::Windows::Forms::TreeNode^ treeNode3 = (gcnew System::Windows::Forms::TreeNode(L"Узел2", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode2 }));
+			   System::Windows::Forms::TreeNode^ treeNode4 = (gcnew System::Windows::Forms::TreeNode(L"Узел1", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode3 }));
+			   System::Windows::Forms::TreeNode^ treeNode5 = (gcnew System::Windows::Forms::TreeNode(L"Узел0", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode4 }));
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->splitContainer3 = (gcnew System::Windows::Forms::SplitContainer());
+			   this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			   this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
 			   this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			   this->label2 = (gcnew System::Windows::Forms::Label());
 			   this->toolStrip2 = (gcnew System::Windows::Forms::ToolStrip());
 			   this->toolStripButton5 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -114,20 +102,18 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton6 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->treeView2 = (gcnew System::Windows::Forms::TreeView());
 			   this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
+			   this->treeView1 = (gcnew System::Windows::Forms::TreeView());
+			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			   this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			   this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
 			   this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
-			   this->treeView1 = (gcnew System::Windows::Forms::TreeView());
-			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->label2 = (gcnew System::Windows::Forms::Label());
-			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			   this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			   this->menuStrip1->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer3))->BeginInit();
 			   this->splitContainer3->Panel1->SuspendLayout();
@@ -182,8 +168,18 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer3->SplitterDistance = 474;
 			   this->splitContainer3->TabIndex = 0;
 			   // 
+			   // textBox2
+			   // 
+			   this->textBox2->Location = System::Drawing::Point(57, 0);
+			   this->textBox2->Name = L"textBox2";
+			   this->textBox2->Size = System::Drawing::Size(474, 20);
+			   this->textBox2->TabIndex = 4;
+			   this->textBox2->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::TextBox2_KeyDown);
+			   // 
 			   // dataGridView2
 			   // 
+			   this->dataGridView2->AllowUserToAddRows = false;
+			   this->dataGridView2->AllowUserToDeleteRows = false;
 			   this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			   this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				   this->Column6,
@@ -192,6 +188,7 @@ namespace CppCLRWinFormsProject {
 			   this->dataGridView2->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->dataGridView2->Location = System::Drawing::Point(25, 23);
 			   this->dataGridView2->Name = L"dataGridView2";
+			   this->dataGridView2->ReadOnly = true;
 			   this->dataGridView2->Size = System::Drawing::Size(449, 568);
 			   this->dataGridView2->TabIndex = 2;
 			   // 
@@ -199,28 +196,44 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->Column6->HeaderText = L"Имя";
 			   this->Column6->Name = L"Column6";
+			   this->Column6->ReadOnly = true;
 			   this->Column6->Width = 200;
 			   // 
 			   // Column7
 			   // 
 			   this->Column7->HeaderText = L"Тип";
 			   this->Column7->Name = L"Column7";
+			   this->Column7->ReadOnly = true;
 			   // 
 			   // Column8
 			   // 
 			   this->Column8->HeaderText = L"Размер";
 			   this->Column8->Name = L"Column8";
+			   this->Column8->ReadOnly = true;
 			   // 
 			   // Column9
 			   // 
 			   this->Column9->HeaderText = L"Дата";
 			   this->Column9->Name = L"Column9";
+			   this->Column9->ReadOnly = true;
 			   // 
 			   // Column10
 			   // 
 			   this->Column10->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			   this->Column10->HeaderText = L"Атрибуты";
 			   this->Column10->Name = L"Column10";
+			   this->Column10->ReadOnly = true;
+			   // 
+			   // label2
+			   // 
+			   this->label2->AutoSize = true;
+			   this->label2->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label2->Location = System::Drawing::Point(25, 0);
+			   this->label2->Name = L"label2";
+			   this->label2->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
+			   this->label2->Size = System::Drawing::Size(26, 23);
+			   this->label2->TabIndex = 3;
+			   this->label2->Text = L"c:\\";
 			   // 
 			   // toolStrip2
 			   // 
@@ -308,8 +321,37 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer2->SplitterDistance = 43;
 			   this->splitContainer2->TabIndex = 0;
 			   // 
+			   // treeView1
+			   // 
+			   this->treeView1->Dock = System::Windows::Forms::DockStyle::Fill;
+			   this->treeView1->Location = System::Drawing::Point(0, 0);
+			   this->treeView1->Name = L"treeView1";
+			   treeNode1->Name = L"Узел4";
+			   treeNode1->Text = L"Узел4";
+			   treeNode2->Name = L"Узел3";
+			   treeNode2->Text = L"Узел3";
+			   treeNode3->Name = L"Узел2";
+			   treeNode3->Text = L"Узел2";
+			   treeNode4->Name = L"Узел1";
+			   treeNode4->Text = L"Узел1";
+			   treeNode5->Name = L"Узел0";
+			   treeNode5->Text = L"Узел0";
+			   this->treeView1->Nodes->AddRange(gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode5 });
+			   this->treeView1->Size = System::Drawing::Size(43, 591);
+			   this->treeView1->TabIndex = 0;
+			   // 
+			   // textBox1
+			   // 
+			   this->textBox1->Location = System::Drawing::Point(32, 0);
+			   this->textBox1->Name = L"textBox1";
+			   this->textBox1->Size = System::Drawing::Size(421, 20);
+			   this->textBox1->TabIndex = 6;
+			   this->textBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::TextBox1_KeyDown);
+			   // 
 			   // dataGridView1
 			   // 
+			   this->dataGridView1->AllowUserToAddRows = false;
+			   this->dataGridView1->AllowUserToDeleteRows = false;
 			   this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			   this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				   this->Column1,
@@ -318,6 +360,7 @@ namespace CppCLRWinFormsProject {
 			   this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->dataGridView1->Location = System::Drawing::Point(0, 23);
 			   this->dataGridView1->Name = L"dataGridView1";
+			   this->dataGridView1->ReadOnly = true;
 			   this->dataGridView1->Size = System::Drawing::Size(453, 568);
 			   this->dataGridView1->TabIndex = 0;
 			   // 
@@ -325,28 +368,44 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->Column1->HeaderText = L"Имя";
 			   this->Column1->Name = L"Column1";
+			   this->Column1->ReadOnly = true;
 			   this->Column1->Width = 200;
 			   // 
 			   // Column2
 			   // 
 			   this->Column2->HeaderText = L"Тип";
 			   this->Column2->Name = L"Column2";
+			   this->Column2->ReadOnly = true;
 			   // 
 			   // Column3
 			   // 
 			   this->Column3->HeaderText = L"Размер";
 			   this->Column3->Name = L"Column3";
+			   this->Column3->ReadOnly = true;
 			   // 
 			   // Column4
 			   // 
 			   this->Column4->HeaderText = L"Дата";
 			   this->Column4->Name = L"Column4";
+			   this->Column4->ReadOnly = true;
 			   // 
 			   // Column5
 			   // 
 			   this->Column5->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			   this->Column5->HeaderText = L"Атрибуты";
 			   this->Column5->Name = L"Column5";
+			   this->Column5->ReadOnly = true;
+			   // 
+			   // label1
+			   // 
+			   this->label1->AutoSize = true;
+			   this->label1->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label1->Location = System::Drawing::Point(0, 0);
+			   this->label1->Name = L"label1";
+			   this->label1->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
+			   this->label1->Size = System::Drawing::Size(26, 23);
+			   this->label1->TabIndex = 5;
+			   this->label1->Text = L"c:\\";
 			   // 
 			   // splitContainer1
 			   // 
@@ -383,50 +442,6 @@ namespace CppCLRWinFormsProject {
 			   this->toolStrip1->Size = System::Drawing::Size(1024, 25);
 			   this->toolStrip1->TabIndex = 1;
 			   this->toolStrip1->Text = L"toolStrip1";
-			   // 
-			   // treeView1
-			   // 
-			   this->treeView1->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->treeView1->Location = System::Drawing::Point(0, 0);
-			   this->treeView1->Name = L"treeView1";
-			   this->treeView1->Size = System::Drawing::Size(43, 591);
-			   this->treeView1->TabIndex = 0;
-			   // 
-			   // label1
-			   // 
-			   this->label1->AutoSize = true;
-			   this->label1->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label1->Location = System::Drawing::Point(0, 0);
-			   this->label1->Name = L"label1";
-			   this->label1->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
-			   this->label1->Size = System::Drawing::Size(26, 23);
-			   this->label1->TabIndex = 5;
-			   this->label1->Text = L"c:\\";
-			   // 
-			   // label2
-			   // 
-			   this->label2->AutoSize = true;
-			   this->label2->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label2->Location = System::Drawing::Point(25, 0);
-			   this->label2->Name = L"label2";
-			   this->label2->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
-			   this->label2->Size = System::Drawing::Size(26, 23);
-			   this->label2->TabIndex = 3;
-			   this->label2->Text = L"c:\\";
-			   // 
-			   // textBox1
-			   // 
-			   this->textBox1->Location = System::Drawing::Point(32, 0);
-			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(363, 20);
-			   this->textBox1->TabIndex = 6;
-			   // 
-			   // textBox2
-			   // 
-			   this->textBox2->Location = System::Drawing::Point(57, 0);
-			   this->textBox2->Name = L"textBox2";
-			   this->textBox2->Size = System::Drawing::Size(474, 20);
-			   this->textBox2->TabIndex = 4;
 			   // 
 			   // Form1
 			   // 
@@ -466,5 +481,7 @@ namespace CppCLRWinFormsProject {
 
 		   }
 #pragma endregion
+		  private: System::Void TextBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
+		  private: System::Void TextBox2_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 };
 }
