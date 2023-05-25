@@ -86,6 +86,9 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
+    <EmbeddedResource>
+      <LogicalName>CppCLRWinFormsProject.Form1.resources</LogicalName>
+    </EmbeddedResource>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
