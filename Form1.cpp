@@ -25,6 +25,10 @@ System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyE
         catch(String^ e){
             this->textBox1->Text = "";
             CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm("Файл не найден");
+            // Центрируем форму относительно окна
+            newProblemForm->StartPosition = FormStartPosition::Manual;
+            newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
+            newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm ->Height) / 2;
             newProblemForm->Show();
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
@@ -46,7 +50,11 @@ System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyE
         }
         catch (String^ e) {
             this->textBox2->Text = "";
-            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
+            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm("Файл не найден");
+            // Центрируем форму относительно окна
+            newProblemForm->StartPosition = FormStartPosition::Manual;
+            newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
+            newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm->Height) / 2;
             newProblemForm->Show();
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
