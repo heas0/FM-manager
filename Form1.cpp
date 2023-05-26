@@ -15,7 +15,10 @@ System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyE
 {
     if (e->KeyCode == Keys::Enter){
         try {
-            for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text)) {
+            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text);
+            this->label3->Text = this->label1->Text + this->textBox1->Text;
+            this->dataGridView1->Rows->Clear();
+            for each (array<String^> ^ rows in Range) {
                 this->dataGridView1->Rows->Add(rows);
             }
         }
@@ -34,6 +37,9 @@ System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyE
 {
     if (e->KeyCode == Keys::Enter) {
         try {
+            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text);
+            this->label3->Text = this->label2->Text + this->textBox2->Text;
+            this->dataGridView1->Rows->Clear();
             for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text)) {
                 this->dataGridView2->Rows->Add(rows);
             }

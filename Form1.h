@@ -71,6 +71,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
 
 
 
@@ -101,13 +102,14 @@ namespace CppCLRWinFormsProject {
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->splitContainer3 = (gcnew System::Windows::Forms::SplitContainer());
-			   this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			   this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
 			   this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			   this->label4 = (gcnew System::Windows::Forms::Label());
+			   this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			   this->label2 = (gcnew System::Windows::Forms::Label());
 			   this->toolStrip2 = (gcnew System::Windows::Forms::ToolStrip());
 			   this->toolStripButton5 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -172,8 +174,9 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   // splitContainer3.Panel1
 			   // 
-			   this->splitContainer3->Panel1->Controls->Add(this->textBox2);
 			   this->splitContainer3->Panel1->Controls->Add(this->dataGridView2);
+			   this->splitContainer3->Panel1->Controls->Add(this->label4);
+			   this->splitContainer3->Panel1->Controls->Add(this->textBox2);
 			   this->splitContainer3->Panel1->Controls->Add(this->label2);
 			   this->splitContainer3->Panel1->Controls->Add(this->toolStrip2);
 			   // 
@@ -183,16 +186,6 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer3->Size = System::Drawing::Size(520, 591);
 			   this->splitContainer3->SplitterDistance = 474;
 			   this->splitContainer3->TabIndex = 0;
-			   // 
-			   // textBox2
-			   // 
-			   this->textBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				   | System::Windows::Forms::AnchorStyles::Right));
-			   this->textBox2->Location = System::Drawing::Point(57, 0);
-			   this->textBox2->Name = L"textBox2";
-			   this->textBox2->Size = System::Drawing::Size(474, 20);
-			   this->textBox2->TabIndex = 4;
-			   this->textBox2->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::TextBox2_KeyDown);
 			   // 
 			   // dataGridView2
 			   // 
@@ -204,10 +197,10 @@ namespace CppCLRWinFormsProject {
 					   this->Column7, this->Column8, this->Column9, this->Column10
 			   });
 			   this->dataGridView2->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->dataGridView2->Location = System::Drawing::Point(25, 23);
+			   this->dataGridView2->Location = System::Drawing::Point(25, 36);
 			   this->dataGridView2->Name = L"dataGridView2";
 			   this->dataGridView2->ReadOnly = true;
-			   this->dataGridView2->Size = System::Drawing::Size(449, 568);
+			   this->dataGridView2->Size = System::Drawing::Size(449, 555);
 			   this->dataGridView2->TabIndex = 2;
 			   // 
 			   // Column6
@@ -241,6 +234,26 @@ namespace CppCLRWinFormsProject {
 			   this->Column10->HeaderText = L"Атрибуты";
 			   this->Column10->Name = L"Column10";
 			   this->Column10->ReadOnly = true;
+			   // 
+			   // label4
+			   // 
+			   this->label4->AutoSize = true;
+			   this->label4->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label4->Location = System::Drawing::Point(25, 23);
+			   this->label4->Name = L"label4";
+			   this->label4->Size = System::Drawing::Size(31, 13);
+			   this->label4->TabIndex = 5;
+			   this->label4->Text = L"Путь";
+			   // 
+			   // textBox2
+			   // 
+			   this->textBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				   | System::Windows::Forms::AnchorStyles::Right));
+			   this->textBox2->Location = System::Drawing::Point(57, 0);
+			   this->textBox2->Name = L"textBox2";
+			   this->textBox2->Size = System::Drawing::Size(474, 20);
+			   this->textBox2->TabIndex = 4;
+			   this->textBox2->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::TextBox2_KeyDown);
 			   // 
 			   // label2
 			   // 
@@ -517,6 +530,7 @@ namespace CppCLRWinFormsProject {
 #pragma endregion
 		  private: System::Void TextBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		  private: System::Void TextBox2_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
+
 
 };
 }
