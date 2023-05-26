@@ -70,6 +70,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::Label^ label3;
 
 
 
@@ -123,6 +124,7 @@ namespace CppCLRWinFormsProject {
 			   this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			   this->label3 = (gcnew System::Windows::Forms::Label());
 			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
@@ -331,6 +333,7 @@ namespace CppCLRWinFormsProject {
 			   // splitContainer2.Panel2
 			   // 
 			   this->splitContainer2->Panel2->Controls->Add(this->dataGridView1);
+			   this->splitContainer2->Panel2->Controls->Add(this->label3);
 			   this->splitContainer2->Panel2->Controls->Add(this->textBox1);
 			   this->splitContainer2->Panel2->Controls->Add(this->label1);
 			   this->splitContainer2->Size = System::Drawing::Size(500, 591);
@@ -366,11 +369,11 @@ namespace CppCLRWinFormsProject {
 					   this->Column2, this->Column3, this->Column4, this->Column5
 			   });
 			   this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->dataGridView1->Location = System::Drawing::Point(0, 23);
+			   this->dataGridView1->Location = System::Drawing::Point(0, 36);
 			   this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 10, 3, 3);
 			   this->dataGridView1->Name = L"dataGridView1";
 			   this->dataGridView1->ReadOnly = true;
-			   this->dataGridView1->Size = System::Drawing::Size(453, 568);
+			   this->dataGridView1->Size = System::Drawing::Size(453, 555);
 			   this->dataGridView1->TabIndex = 0;
 			   // 
 			   // Column1
@@ -404,6 +407,16 @@ namespace CppCLRWinFormsProject {
 			   this->Column5->HeaderText = L"Атрибуты";
 			   this->Column5->Name = L"Column5";
 			   this->Column5->ReadOnly = true;
+			   // 
+			   // label3
+			   // 
+			   this->label3->AutoSize = true;
+			   this->label3->Dock = System::Windows::Forms::DockStyle::Top;
+			   this->label3->Location = System::Drawing::Point(0, 23);
+			   this->label3->Name = L"label3";
+			   this->label3->Size = System::Drawing::Size(31, 13);
+			   this->label3->TabIndex = 7;
+			   this->label3->Text = L"Путь";
 			   // 
 			   // textBox1
 			   // 
@@ -504,5 +517,6 @@ namespace CppCLRWinFormsProject {
 #pragma endregion
 		  private: System::Void TextBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		  private: System::Void TextBox2_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
+
 };
 }

@@ -44,21 +44,8 @@ List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
         }
     }
     catch (Exception^ e) {
-        return result;
+        String^ error = gcnew String("Файл не найден");
+        throw error;
     }
     return result;
-}
-
-bool IsPathValidAndExists(String^ path) {
-    bool isValidAndExists = false;
-    try {
-        // Проверка, что путь является абсолютным и существует в системе
-        String^ fullPath = Path::GetFullPath(path);
-        isValidAndExists = Directory::Exists(fullPath);
-    }
-    catch (Exception^) {
-        // Обработка исключения, если произошла ошибка при проверке пути
-        return 0;
-    }
-    return isValidAndExists;
 }

@@ -13,29 +13,16 @@ using namespace System::Windows::Forms;
 
 System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyEventArgs^ e)
 {
-    if (e->KeyCode == Keys::Enter)
-    {
-        if (IsPathValidAndExists(this->textBox1->Text)) {
-            this->label1->Text = " ";
-            this->dataGridView1->Rows->Clear();
+    if (e->KeyCode == Keys::Enter){
+        try {
             for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text)) {
                 this->dataGridView1->Rows->Add(rows);
             }
         }
-        else {
-            this->label1->Text = "c:\\";
-            if (IsPathValidAndExists(this->label1->Text + this->textBox1->Text)) {
-                this->label1->Text = " ";
-                this->dataGridView1->Rows->Clear();
-                for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text)) {
-                    this->dataGridView1->Rows->Add(rows);
-                }
-            }
-            else {
-                //"Файл не найден(^_^)"
-                CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm();
-                newProblemForm->Show();
-            }
+        catch(String^ e){
+            this->textBox1->Text = "";
+            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm("Файл не найден");
+            newProblemForm->Show();
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
@@ -45,11 +32,16 @@ System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyE
 
 System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyEventArgs^ e)
 {
-    if (e->KeyCode == Keys::Enter)
-    {
-        this->dataGridView2->Rows->Clear();
-        for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text)) {
-            this->dataGridView2->Rows->Add(rows);
+    if (e->KeyCode == Keys::Enter) {
+        try {
+            for each (array<String^> ^ rows in getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text)) {
+                this->dataGridView2->Rows->Add(rows);
+            }
+        }
+        catch (String^ e) {
+            this->textBox2->Text = "";
+            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
+            newProblemForm->Show();
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;

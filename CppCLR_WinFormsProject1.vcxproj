@@ -86,9 +86,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
-    <EmbeddedResource>
-      <LogicalName>CppCLRWinFormsProject.Form1.resources</LogicalName>
-    </EmbeddedResource>
+    <EmbeddedResource />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -169,6 +167,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
+      <LogicalName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CppCLRWinFormsProject.Form1.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProblemForm.resx">
+      <DependentUpon>ProblemForm.h</DependentUpon>
+      <LogicalName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CppCLR_WinFormsProject1.ProblemForm.resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
