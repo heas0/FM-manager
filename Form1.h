@@ -59,7 +59,7 @@ namespace CppCLRWinFormsProject {
 
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
 	private: System::Windows::Forms::ToolStrip^ toolStrip1;
-	private: System::Windows::Forms::TreeView^ treeView1;
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox2;
@@ -72,6 +72,9 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
+	private: System::Windows::Forms::TreeView^ treeView1;
+
 
 
 
@@ -94,11 +97,6 @@ namespace CppCLRWinFormsProject {
 		   void InitializeComponent(void)
 		   {
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			   System::Windows::Forms::TreeNode^ treeNode1 = (gcnew System::Windows::Forms::TreeNode(L"Узел4"));
-			   System::Windows::Forms::TreeNode^ treeNode2 = (gcnew System::Windows::Forms::TreeNode(L"Узел3", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode1 }));
-			   System::Windows::Forms::TreeNode^ treeNode3 = (gcnew System::Windows::Forms::TreeNode(L"Узел2", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode2 }));
-			   System::Windows::Forms::TreeNode^ treeNode4 = (gcnew System::Windows::Forms::TreeNode(L"Узел1", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode3 }));
-			   System::Windows::Forms::TreeNode^ treeNode5 = (gcnew System::Windows::Forms::TreeNode(L"Узел0", gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode4 }));
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->splitContainer3 = (gcnew System::Windows::Forms::SplitContainer());
@@ -132,6 +130,7 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
 			   this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
+			   this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			   this->menuStrip1->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer3))->BeginInit();
 			   this->splitContainer3->Panel1->SuspendLayout();
@@ -164,7 +163,8 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
 			   this->toolStripMenuItem1->Size = System::Drawing::Size(53, 20);
-			   this->toolStripMenuItem1->Text = L"Trprpr.";
+			   this->toolStripMenuItem1->Text = L"Меню";
+			   this->toolStripMenuItem1->Click += gcnew System::EventHandler(this, &Form1::toolStripMenuItem1_Click);
 			   // 
 			   // splitContainer3
 			   // 
@@ -350,7 +350,7 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer2->Panel2->Controls->Add(this->textBox1);
 			   this->splitContainer2->Panel2->Controls->Add(this->label1);
 			   this->splitContainer2->Size = System::Drawing::Size(500, 591);
-			   this->splitContainer2->SplitterDistance = 43;
+			   this->splitContainer2->SplitterDistance = 96;
 			   this->splitContainer2->TabIndex = 0;
 			   // 
 			   // treeView1
@@ -358,19 +358,10 @@ namespace CppCLRWinFormsProject {
 			   this->treeView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			   this->treeView1->Location = System::Drawing::Point(0, 0);
 			   this->treeView1->Name = L"treeView1";
-			   treeNode1->Name = L"Узел4";
-			   treeNode1->Text = L"Узел4";
-			   treeNode2->Name = L"Узел3";
-			   treeNode2->Text = L"Узел3";
-			   treeNode3->Name = L"Узел2";
-			   treeNode3->Text = L"Узел2";
-			   treeNode4->Name = L"Узел1";
-			   treeNode4->Text = L"Узел1";
-			   treeNode5->Name = L"Узел0";
-			   treeNode5->Text = L"Узел0";
-			   this->treeView1->Nodes->AddRange(gcnew cli::array< System::Windows::Forms::TreeNode^  >(1) { treeNode5 });
-			   this->treeView1->Size = System::Drawing::Size(43, 591);
+			   this->treeView1->Size = System::Drawing::Size(96, 591);
 			   this->treeView1->TabIndex = 0;
+			   this->treeView1->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &Form1::treeView1_AfterCollapse);
+			   this->treeView1->AfterExpand += gcnew System::Windows::Forms::TreeViewEventHandler(this, &Form1::treeView1_AfterExpand);
 			   // 
 			   // dataGridView1
 			   // 
@@ -386,7 +377,7 @@ namespace CppCLRWinFormsProject {
 			   this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 10, 3, 3);
 			   this->dataGridView1->Name = L"dataGridView1";
 			   this->dataGridView1->ReadOnly = true;
-			   this->dataGridView1->Size = System::Drawing::Size(453, 555);
+			   this->dataGridView1->Size = System::Drawing::Size(400, 555);
 			   this->dataGridView1->TabIndex = 0;
 			   // 
 			   // Column1
@@ -437,7 +428,7 @@ namespace CppCLRWinFormsProject {
 				   | System::Windows::Forms::AnchorStyles::Right));
 			   this->textBox1->Location = System::Drawing::Point(32, 0);
 			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(421, 20);
+			   this->textBox1->Size = System::Drawing::Size(368, 20);
 			   this->textBox1->TabIndex = 6;
 			   this->textBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::TextBox1_KeyDown);
 			   // 
@@ -530,7 +521,8 @@ namespace CppCLRWinFormsProject {
 #pragma endregion
 		  private: System::Void TextBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		  private: System::Void TextBox2_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
-
-
+		  private: System::Void toolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e);
+		  private: System::Void treeView1_AfterExpand(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e);
+		  private: System::Void treeView1_AfterCollapse(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e);
 };
 }

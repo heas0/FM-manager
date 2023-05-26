@@ -3,6 +3,7 @@
 using namespace System;
 using namespace System::IO;
 using namespace System::Collections::Generic;
+using namespace System::Windows::Forms;
 
 List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
 {
@@ -48,4 +49,64 @@ List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
         throw error;
     }
     return result;
+}
+void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNode, int depth)
+{
+    //node->Tag = "Дополнительная информация";
+
+    // Получаем значение свойства Tag из узла
+    //String^ additionalInfo = safe_cast<String^>(node->Tag);
+    if (depth <= 0) {
+        return;
+    }
+    try
+    {
+        // Получаем подкаталоги
+        array<String^>^ directories = Directory::GetDirectories(directoryPath);
+        // Добавляем подкаталоги в качестве дочерних узлов
+        for each (String ^ directory in directories)
+        {
+            try
+            {
+                DirectoryInfo^ dirInfo = gcnew DirectoryInfo(directory);
+                String^ dirName = dirInfo->Name;
+                TreeNode^ directoryNode = gcnew TreeNode(dirName);
+                directoryNode->Tag = directory;
+                parentNode->Nodes->Add(directoryNode);
+                AddDirectoriesAndFilesToTreeView(directory, directoryNode, depth - 1);
+            }
+            catch (UnauthorizedAccessException^)
+            {
+                return;
+                // Обработка ошибки доступа к подкаталогу
+                // Можно добавить соответствующую логику обработки ошибок здесь
+            }
+        }
+
+        // Получаем файлы
+        array<String^>^ files = Directory::GetFiles(directoryPath);
+
+        // Добавляем файлы в качестве дочерних узлов
+        for each (String ^ file in files)
+        {
+            try
+            {
+                String^ fileName = Path::GetFileName(file);
+                TreeNode^ fileNode = gcnew TreeNode(fileName);
+                parentNode->Nodes->Add(fileNode);
+            }
+            catch (UnauthorizedAccessException^)
+            {
+                return;
+                // Обработка ошибки доступа к файлу
+                // Можно добавить соответствующую логику обработки ошибок здесь
+            }
+        }
+    }
+    catch (Exception^ ex)
+    {
+        return;
+        // Обработка ошибок при доступе к файлам/каталогам
+        // Можно добавить соответствующую логику обработки ошибок здесь
+    }
 }
