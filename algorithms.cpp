@@ -23,46 +23,60 @@ List<String^>^ PopulateDrives()
 List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
 {
     List<array<String^>^>^ result = gcnew List<array<String^>^>();
-    try {
-        array<String^>^ fileEntries = Directory::GetFiles(path);
+
+    try
+    {
         array<String^>^ subdirectoryEntries = Directory::GetDirectories(path);
+
         for each (String ^ directoryName in subdirectoryEntries)
         {
-            DirectoryInfo^ dirInfo = gcnew DirectoryInfo(directoryName);
-            String^ dirName = dirInfo->Name;
-            String^ dirType = " ";
-            String^ dirSize = "<Папка>"; // Каталог не имеет размера
-            String^ dirTime = dirInfo->LastWriteTime.ToString();
-            String^ dirAttributes = dirInfo->Attributes.ToString();
-            array<String^>^ rowData = gcnew array<String^>(5);
-            rowData[0] = dirName;
-            rowData[1] = dirType;
-            rowData[2] = dirSize;
-            rowData[3] = dirTime;
-            rowData[4] = dirAttributes;
-            result->Add(rowData);
+            try
+            {
+                DirectoryInfo^ dirInfo = gcnew DirectoryInfo(directoryName);
+                String^ dirName = dirInfo->Name;
+                String^ dirType = "";
+                String^ dirSize = "<Папка>";
+                String^ dirTime = dirInfo->LastWriteTime.ToString();
+                String^ dirAttributes = dirInfo->Attributes.ToString();
+
+                array<String^>^ rowData = gcnew array<String^>(5) { dirName, dirType, dirSize, dirTime, dirAttributes };
+                result->Add(rowData);
+            }
+            catch (UnauthorizedAccessException^)
+            {
+                // Ignore this directory and continue with the next one
+                continue;
+            }
         }
+
+        array<String^>^ fileEntries = Directory::GetFiles(path);
+
         for each (String ^ fileName in fileEntries)
         {
-            FileInfo^ fileInfo = gcnew FileInfo(fileName);
-            String^ fileName = fileInfo->Name;
-            String^ fileType = " ";
-            String^ fileSize = fileInfo->Length.ToString();
-            String^ fileTime = fileInfo->LastWriteTime.ToString();
-            String^ fileAttributes = fileInfo->Attributes.ToString();
-            array<String^>^ rowData = gcnew array<String^>(5);
-            rowData[0] = fileName;
-            rowData[1] = fileType;
-            rowData[2] = fileSize;
-            rowData[3] = fileTime; 
-            rowData[4] = fileAttributes;
-            result->Add(rowData);
+            try
+            {
+                FileInfo^ fileInfo = gcnew FileInfo(fileName);
+                String^ fName = fileInfo->Name;
+                String^ fileType = fileInfo->Extension->Substring(1);
+                String^ fileSize = fileInfo->Length.ToString();
+                String^ fileTime = fileInfo->LastWriteTime.ToString();
+                String^ fileAttributes = fileInfo->Attributes.ToString();
+
+                array<String^>^ rowData = gcnew array<String^>(5) { fName, fileType, fileSize, fileTime, fileAttributes };
+                result->Add(rowData);
+            }
+            catch (UnauthorizedAccessException^)
+            {
+                // Ignore this file and continue with the next one
+                continue;
+            }
         }
     }
-    catch (Exception^ e) {
-        String^ error = gcnew String("Файл не найден");
-        throw error;
+    catch (Exception^)
+    {
+        throw safe_cast<String^>("Ошибка чтения файла");
     }
+
     return result;
 }
 void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNode, int depth)
@@ -92,7 +106,7 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
             }
             catch (UnauthorizedAccessException^)
             {
-                return;
+                continue;
                 // Обработка ошибки доступа к подкаталогу
                 // Можно добавить соответствующую логику обработки ошибок здесь
             }
@@ -112,7 +126,7 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
             }
             catch (UnauthorizedAccessException^)
             {
-                return;
+                continue;
                 // Обработка ошибки доступа к файлу
                 // Можно добавить соответствующую логику обработки ошибок здесь
             }

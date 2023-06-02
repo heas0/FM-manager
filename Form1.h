@@ -58,11 +58,11 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
@@ -70,6 +70,16 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ UpdateLeftTreeToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ UpdateRightTreeToolStripMenuItem;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+
+
+
+
+
 
 
 
@@ -204,6 +214,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->dataGridView2->AllowUserToAddRows = false;
 			   this->dataGridView2->AllowUserToDeleteRows = false;
+			   this->dataGridView2->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			   this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			   this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				   this->Column6,
@@ -213,8 +224,12 @@ namespace CppCLRWinFormsProject {
 			   this->dataGridView2->Location = System::Drawing::Point(27, 36);
 			   this->dataGridView2->Name = L"dataGridView2";
 			   this->dataGridView2->ReadOnly = true;
+			   this->dataGridView2->RowHeadersVisible = false;
+			   this->dataGridView2->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			   this->dataGridView2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			   this->dataGridView2->Size = System::Drawing::Size(447, 555);
 			   this->dataGridView2->TabIndex = 2;
+			   this->dataGridView2->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView2_CellDoubleClick);
 			   // 
 			   // Column6
 			   // 
@@ -335,6 +350,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->dataGridView1->AllowUserToAddRows = false;
 			   this->dataGridView1->AllowUserToDeleteRows = false;
+			   this->dataGridView1->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			   this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			   this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				   this->Column1,
@@ -345,14 +361,19 @@ namespace CppCLRWinFormsProject {
 			   this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 10, 3, 3);
 			   this->dataGridView1->Name = L"dataGridView1";
 			   this->dataGridView1->ReadOnly = true;
+			   this->dataGridView1->RowHeadersVisible = false;
+			   this->dataGridView1->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			   this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			   this->dataGridView1->Size = System::Drawing::Size(400, 555);
 			   this->dataGridView1->TabIndex = 0;
+			   this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView1_CellDoubleClick);
 			   // 
 			   // Column1
 			   // 
 			   this->Column1->HeaderText = L"Èìÿ";
 			   this->Column1->Name = L"Column1";
 			   this->Column1->ReadOnly = true;
+			   this->Column1->Resizable = System::Windows::Forms::DataGridViewTriState::True;
 			   this->Column1->Width = 200;
 			   // 
 			   // Column2
@@ -431,7 +452,6 @@ namespace CppCLRWinFormsProject {
 			   // toolStripButton1
 			   // 
 			   this->toolStripButton1->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			   this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton1.Image")));
 			   this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
 			   this->toolStripButton1->Name = L"toolStripButton1";
 			   this->toolStripButton1->Size = System::Drawing::Size(23, 22);
@@ -498,5 +518,7 @@ namespace CppCLRWinFormsProject {
 	    private: System::Void UpdateDataGridView1(String^ path);
 	    private: System::Void UpdateDataGridView2(String^ path);
 		private: System::Void callProblemForm(String^ problem);
+		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+		private: System::Void dataGridView2_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 };
 }

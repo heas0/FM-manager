@@ -18,12 +18,12 @@ System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyE
             this->label3->Text = this->label1->Text + this->textBox1->Text;
             this->dataGridView1->Rows->Clear();
             for each (array<String^> ^ rows in Range) {
-                this->dataGridView1->Rows->Add(rows);
+                this->dataGridView1->Rows->Add(rows);      
             }
         }
         catch(String^ e){
             this->textBox1->Text = "";
-            callProblemForm(e);
+            callProblemForm(e + "\nВозможно, неверный путь");
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
@@ -46,7 +46,7 @@ System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyE
             this->textBox2->Text = "";
             CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
             // Центрируем форму относительно окна
-            callProblemForm(e);
+            callProblemForm(e + "\nВозможно, неверный путь");
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
@@ -86,6 +86,7 @@ System::Void CppCLRWinFormsProject::Form1::treeView_AfterCollapse(System::Object
 
 System::Void CppCLRWinFormsProject::Form1::UpdateLeftTreeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
+    this->treeView1->Nodes->Clear();
     List<String^>^ Range = PopulateDrives();
     for each (String ^ pathDrive in Range) {
         // Создаем объект DriveInfo с указанным именем диска
@@ -101,6 +102,7 @@ System::Void CppCLRWinFormsProject::Form1::UpdateLeftTreeToolStripMenuItem_Click
 
 System::Void CppCLRWinFormsProject::Form1::UpdateRightTreeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e)
 {
+    this->treeView2->Nodes->Clear();
     List<String^>^ Range = PopulateDrives();
     for each (String ^ pathDrive in Range) {
         // Создаем объект DriveInfo с указанным именем диска
@@ -206,4 +208,34 @@ System::Void CppCLRWinFormsProject::Form1::callProblemForm(String^ problem)
     newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
     newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm->Height) / 2;
     newProblemForm->Show();
+}
+
+System::Void CppCLRWinFormsProject::Form1::dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+{
+    if (e->RowIndex >= 0) {
+        // Получаем значение ячейки третьего столбца выбранной строки
+        String^ value = dataGridView1->Rows[e->RowIndex]->Cells[2]->Value->ToString();
+        // Проверяем условие (значение содержит "<Папка>")
+        if (value == "<Папка>")
+        {
+            String^ cellText = dataGridView1->Rows[e->RowIndex]->Cells[0]->Value->ToString();
+            // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
+            UpdateDataGridView1(label3->Text + "\\" + cellText);
+        }
+    }
+}
+
+System::Void CppCLRWinFormsProject::Form1::dataGridView2_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+{
+    if (e->RowIndex >= 0) {
+        // Получаем значение ячейки третьего столбца выбранной строки
+        String^ value = dataGridView2->Rows[e->RowIndex]->Cells[2]->Value->ToString();
+        // Проверяем условие (значение содержит "<Папка>")
+        if (value == "<Папка>")
+        {
+            String^ cellText = dataGridView2->Rows[e->RowIndex]->Cells[0]->Value->ToString();
+            // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
+            UpdateDataGridView2(label4->Text + "\\" + cellText);
+        }
+    }
 }
