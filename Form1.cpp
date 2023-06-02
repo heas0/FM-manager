@@ -23,12 +23,7 @@ System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyE
         }
         catch(String^ e){
             this->textBox1->Text = "";
-            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
-            // Центрируем форму относительно окна
-            newProblemForm->StartPosition = FormStartPosition::Manual;
-            newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
-            newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm ->Height) / 2;
-            newProblemForm->Show();
+            callProblemForm(e);
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
@@ -51,10 +46,7 @@ System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyE
             this->textBox2->Text = "";
             CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
             // Центрируем форму относительно окна
-            newProblemForm->StartPosition = FormStartPosition::Manual;
-            newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
-            newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm->Height) / 2;
-            newProblemForm->Show();
+            callProblemForm(e);
         }
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
@@ -127,21 +119,11 @@ System::Void CppCLRWinFormsProject::Form1::treeView1_NodeMouseDoubleClick(System
     // Проверяем, что двойной щелчок произошел на узле с путем к папке
     if (e->Node->Tag != nullptr) {
         String^ path = e->Node->Tag->ToString();
-        if (Directory::Exists(path))
-        {
-            // Вызываем вашу функцию для обработки двойного щелчка на папке
-            // ...
-            try {
-                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
-                this->label3->Text = path;
-                this->dataGridView1->Rows->Clear();
-                for each (array<String^> ^ rows in Range) {
-                    this->dataGridView1->Rows->Add(rows);
-                }
-            }
-            catch (String^ e) {
-                return;
-            }
+        try {
+            UpdateDataGridView1(path);
+        }
+        catch(String^ e) {
+            callProblemForm(e + "\nВозможно, ошибка доступа");
         }
     }
 }
@@ -151,21 +133,77 @@ System::Void CppCLRWinFormsProject::Form1::treeView2_NodeMouseDoubleClick(System
     // Проверяем, что двойной щелчок произошел на узле с путем к папке
     if (e->Node->Tag != nullptr) {
         String^ path = e->Node->Tag->ToString();
-        if (Directory::Exists(path))
-        {
-            // Вызываем вашу функцию для обработки двойного щелчка на папке
-            // ...
-            try {
-                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
-                this->label4->Text = path;
-                this->dataGridView2->Rows->Clear();
-                for each (array<String^> ^ rows in Range) {
-                    this->dataGridView2->Rows->Add(rows);
-                }
-            }
-            catch (String^ e) {
-                return;
-            }
+        try {
+            UpdateDataGridView2(path);
+        }
+        catch (String^ e) {
+            callProblemForm(e + "\nВозможно, ошибка доступа");
         }
     }
+}
+
+System::Void CppCLRWinFormsProject::Form1::Form1_Load(System::Object^ sender, System::EventArgs^ e)
+{
+    UpdateLeftTreeToolStripMenuItem_Click(sender, e);
+    UpdateRightTreeToolStripMenuItem_Click(sender, e);
+    String^ driveForLabel = PopulateDrives()[0];
+    this->label1->Text = driveForLabel;
+    this->label2->Text = driveForLabel;
+    this->label3->Text = driveForLabel;
+    this->label4->Text = driveForLabel;
+    List<array<String^>^>^ Range = getFileDirectoryForDataGridView(driveForLabel);
+    for each (array<String^> ^ rows in Range) {
+        this->dataGridView1->Rows->Add(rows);
+        this->dataGridView2->Rows->Add(rows);
+    }
+}
+
+System::Void CppCLRWinFormsProject::Form1::UpdateDataGridView1(String^ path)
+{
+    if (Directory::Exists(path))
+    {
+        // Вызываем вашу функцию для обработки двойного щелчка на папке
+        // ...
+        try {
+            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
+            this->label3->Text = path;
+            this->dataGridView1->Rows->Clear();
+            for each (array<String^> ^ rows in Range) {
+                this->dataGridView1->Rows->Add(rows);
+            }
+        }
+        catch (String^ e) {
+            throw e;
+        }
+    }
+}
+
+System::Void CppCLRWinFormsProject::Form1::UpdateDataGridView2(String^ path)
+{
+    if (Directory::Exists(path))
+    {
+        // Вызываем вашу функцию для обработки двойного щелчка на папке
+        // ...
+        try {
+            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
+            this->label4->Text = path;
+            this->dataGridView2->Rows->Clear();
+            for each (array<String^> ^ rows in Range) {
+                this->dataGridView2->Rows->Add(rows);
+            }
+        }
+        catch (String^ e) {
+            throw e;
+        }
+    }
+}
+
+System::Void CppCLRWinFormsProject::Form1::callProblemForm(String^ problem)
+{
+    CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(problem);
+    // Центрируем форму относительно окна
+    newProblemForm->StartPosition = FormStartPosition::Manual;
+    newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
+    newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm->Height) / 2;
+    newProblemForm->Show();
 }

@@ -460,6 +460,7 @@ namespace CppCLRWinFormsProject {
 			   this->MainMenuStrip = this->menuStrip1;
 			   this->Name = L"Form1";
 			   this->Text = L"File Manager";
+			   this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			   this->menuStrip1->ResumeLayout(false);
 			   this->menuStrip1->PerformLayout();
 			   this->splitContainer3->Panel1->ResumeLayout(false);
@@ -493,5 +494,9 @@ namespace CppCLRWinFormsProject {
 		private: System::Void UpdateRightTreeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 		private: System::Void treeView1_NodeMouseDoubleClick(System::Object^ sender, System::Windows::Forms::TreeNodeMouseClickEventArgs^ e);
 		private: System::Void treeView2_NodeMouseDoubleClick(System::Object^ sender, System::Windows::Forms::TreeNodeMouseClickEventArgs^ e);
+		private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e);
+	    private: System::Void UpdateDataGridView1(String^ path);
+	    private: System::Void UpdateDataGridView2(String^ path);
+		private: System::Void callProblemForm(String^ problem);
 };
 }
