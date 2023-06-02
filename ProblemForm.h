@@ -39,7 +39,7 @@ namespace CppCLR_WinFormsProject1 {
 		/// Обязательная переменная конструктора.
 		/// </summary>
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ImageList^ imageList1;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private: System::ComponentModel::IContainer^ components;
@@ -53,10 +53,8 @@ namespace CppCLR_WinFormsProject1 {
 		/// </summary>
 		void InitializeComponent()
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ProblemForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->imageList1 = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -65,17 +63,13 @@ namespace CppCLR_WinFormsProject1 {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->ImageAlign = System::Drawing::ContentAlignment::TopLeft;
-			this->label1->Location = System::Drawing::Point(84, 49);
+			this->label1->Location = System::Drawing::Point(84, 19);
+			this->label1->MaximumSize = System::Drawing::Size(200, 120);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(47, 13);
+			this->label1->Size = System::Drawing::Size(47, 17);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Ошибка";
-			// 
-			// imageList1
-			// 
-			this->imageList1->ColorDepth = System::Windows::Forms::ColorDepth::Depth8Bit;
-			this->imageList1->ImageSize = System::Drawing::Size(16, 16);
-			this->imageList1->TransparentColor = System::Drawing::Color::Transparent;
+			this->label1->UseCompatibleTextRendering = true;
 			// 
 			// pictureBox1
 			// 
@@ -90,7 +84,7 @@ namespace CppCLR_WinFormsProject1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(301, 103);
+			this->ClientSize = System::Drawing::Size(284, 111);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));

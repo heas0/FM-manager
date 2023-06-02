@@ -5,6 +5,21 @@ using namespace System::IO;
 using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 
+List<String^>^ PopulateDrives()
+{
+    // Получаем список всех доступных дисков
+    array<DriveInfo^>^ drives = DriveInfo::GetDrives();
+    // Создаём список, содержащий пути дисков. 
+    List<String^>^ pathDrives = gcnew List<String^>();
+    // добавляем путь к диску в массив
+    for each (DriveInfo ^ drive in drives)
+    {
+        pathDrives->Add(drive->Name);
+
+    }
+    return pathDrives;
+}
+
 List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
 {
     List<array<String^>^>^ result = gcnew List<array<String^>^>();
@@ -54,7 +69,7 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
 {
     //node->Tag = "Дополнительная информация";
 
-    // Получаем значение свойства Tag из узла
+    // Получение значения свойства Tag из узла
     //String^ additionalInfo = safe_cast<String^>(node->Tag);
     if (depth <= 0) {
         return;
