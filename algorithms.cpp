@@ -1,4 +1,4 @@
-#include "algorithms.h"
+п»ї#include "algorithms.h"
 #include "pch.h"
 using namespace System;
 using namespace System::IO;
@@ -7,11 +7,11 @@ using namespace System::Windows::Forms;
 
 List<String^>^ PopulateDrives()
 {
-    // Получаем список всех доступных дисков
+    // РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІСЃРµС… РґРѕСЃС‚СѓРїРЅС‹С… РґРёСЃРєРѕРІ
     array<DriveInfo^>^ drives = DriveInfo::GetDrives();
-    // Создаём список, содержащий пути дисков. 
+    // РЎРѕР·РґР°С‘Рј СЃРїРёСЃРѕРє, СЃРѕРґРµСЂР¶Р°С‰РёР№ РїСѓС‚Рё РґРёСЃРєРѕРІ. 
     List<String^>^ pathDrives = gcnew List<String^>();
-    // добавляем путь к диску в массив
+    // РґРѕР±Р°РІР»СЏРµРј РїСѓС‚СЊ Рє РґРёСЃРєСѓ РІ РјР°СЃСЃРёРІ
     for each (DriveInfo ^ drive in drives)
     {
         pathDrives->Add(drive->Name);
@@ -27,7 +27,20 @@ List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
     try
     {
         array<String^>^ subdirectoryEntries = Directory::GetDirectories(path);
+        String^ parentDirectory = Path::GetDirectoryName(path);
+        if (!String::IsNullOrEmpty(parentDirectory) && Directory::Exists(parentDirectory))
+        {
+            // Р РѕРґРёС‚РµР»СЊСЃРєРёР№ РєР°С‚Р°Р»РѕРі СЃСѓС‰РµСЃС‚РІСѓРµС‚
+            DirectoryInfo^ dirInfo = gcnew DirectoryInfo(parentDirectory);
+            String^ dirName = "|_ [" + dirInfo->Name + "]";
+            String^ dirType = "";
+            String^ dirSize = "<РџР°РїРєР°> ";
+            String^ dirTime = dirInfo->LastWriteTime.ToString();
+            String^ dirAttributes = dirInfo->Attributes.ToString();
 
+            array<String^>^ rowData = gcnew array<String^>(5) { dirName, dirType, dirSize, dirTime, dirAttributes };
+            result->Add(rowData);
+        }
         for each (String ^ directoryName in subdirectoryEntries)
         {
             try
@@ -35,7 +48,7 @@ List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
                 DirectoryInfo^ dirInfo = gcnew DirectoryInfo(directoryName);
                 String^ dirName = dirInfo->Name;
                 String^ dirType = "";
-                String^ dirSize = "<Папка>";
+                String^ dirSize = "<РџР°РїРєР°>";
                 String^ dirTime = dirInfo->LastWriteTime.ToString();
                 String^ dirAttributes = dirInfo->Attributes.ToString();
 
@@ -74,25 +87,25 @@ List<array<String^>^>^ getFileDirectoryForDataGridView(String^ path)
     }
     catch (Exception^)
     {
-        throw safe_cast<String^>("Ошибка чтения файла");
+        throw safe_cast<String^>("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°");
     }
 
     return result;
 }
 void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNode, int depth)
 {
-    //node->Tag = "Дополнительная информация";
+    //node->Tag = "Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ";
 
-    // Получение значения свойства Tag из узла
+    // РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃРІРѕР№СЃС‚РІР° Tag РёР· СѓР·Р»Р°
     //String^ additionalInfo = safe_cast<String^>(node->Tag);
     if (depth <= 0) {
         return;
     }
     try
     {
-        // Получаем подкаталоги
+        // РџРѕР»СѓС‡Р°РµРј РїРѕРґРєР°С‚Р°Р»РѕРіРё
         array<String^>^ directories = Directory::GetDirectories(directoryPath);
-        // Добавляем подкаталоги в качестве дочерних узлов
+        // Р”РѕР±Р°РІР»СЏРµРј РїРѕРґРєР°С‚Р°Р»РѕРіРё РІ РєР°С‡РµСЃС‚РІРµ РґРѕС‡РµСЂРЅРёС… СѓР·Р»РѕРІ
         for each (String ^ directory in directories)
         {
             try
@@ -107,15 +120,15 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
             catch (UnauthorizedAccessException^)
             {
                 continue;
-                // Обработка ошибки доступа к подкаталогу
-                // Можно добавить соответствующую логику обработки ошибок здесь
+                // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё РґРѕСЃС‚СѓРїР° Рє РїРѕРґРєР°С‚Р°Р»РѕРіСѓ
+                // РњРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ Р»РѕРіРёРєСѓ РѕР±СЂР°Р±РѕС‚РєРё РѕС€РёР±РѕРє Р·РґРµСЃСЊ
             }
         }
 
-        // Получаем файлы
+        // РџРѕР»СѓС‡Р°РµРј С„Р°Р№Р»С‹
         array<String^>^ files = Directory::GetFiles(directoryPath);
 
-        // Добавляем файлы в качестве дочерних узлов
+        // Р”РѕР±Р°РІР»СЏРµРј С„Р°Р№Р»С‹ РІ РєР°С‡РµСЃС‚РІРµ РґРѕС‡РµСЂРЅРёС… СѓР·Р»РѕРІ
         for each (String ^ file in files)
         {
             try
@@ -127,15 +140,15 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
             catch (UnauthorizedAccessException^)
             {
                 continue;
-                // Обработка ошибки доступа к файлу
-                // Можно добавить соответствующую логику обработки ошибок здесь
+                // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё РґРѕСЃС‚СѓРїР° Рє С„Р°Р№Р»Сѓ
+                // РњРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ Р»РѕРіРёРєСѓ РѕР±СЂР°Р±РѕС‚РєРё РѕС€РёР±РѕРє Р·РґРµСЃСЊ
             }
         }
     }
     catch (Exception^ ex)
     {
         return;
-        // Обработка ошибок при доступе к файлам/каталогам
-        // Можно добавить соответствующую логику обработки ошибок здесь
+        // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РѕРє РїСЂРё РґРѕСЃС‚СѓРїРµ Рє С„Р°Р№Р»Р°Рј/РєР°С‚Р°Р»РѕРіР°Рј
+        // РњРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ Р»РѕРіРёРєСѓ РѕР±СЂР°Р±РѕС‚РєРё РѕС€РёР±РѕРє Р·РґРµСЃСЊ
     }
 }

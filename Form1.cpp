@@ -13,41 +13,73 @@ using namespace System::Windows::Forms;
 System::Void CppCLRWinFormsProject::Form1::TextBox1_KeyDown(Object^ sender, KeyEventArgs^ e)
 {
     if (e->KeyCode == Keys::Enter){
-        try {
-            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text);
-            this->label3->Text = this->label1->Text + this->textBox1->Text;
-            this->dataGridView1->Rows->Clear();
-            for each (array<String^> ^ rows in Range) {
-                this->dataGridView1->Rows->Add(rows);      
+        if (Path::IsPathRooted(this->textBox1->Text) && Directory::Exists(this->textBox1->Text))
+        {
+            try {
+                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->textBox1->Text);
+                this->label3->Text = this->textBox1->Text;
+                this->dataGridView1->Rows->Clear();
+                for each (array<String^> ^ rows in Range) {
+                    this->dataGridView1->Rows->Add(rows);
+                }
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, неверный путь");
             }
         }
-        catch(String^ e){
-            this->textBox1->Text = "";
-            callProblemForm(e + "\nВозможно, неверный путь");
+        else {
+            try {
+                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label1->Text + this->textBox1->Text);
+                this->label3->Text = this->label1->Text + this->textBox1->Text;
+                this->dataGridView1->Rows->Clear();
+                for each (array<String^> ^ rows in Range) {
+                    this->dataGridView1->Rows->Add(rows);
+                }
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, неверный путь");
+            }
         }
-        // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
-        e->Handled = true;
-        e->SuppressKeyPress = true;
+            this->textBox1->Text = "";
+            // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
+            e->Handled = true;
+            e->SuppressKeyPress = true;
     }
 }
 
 System::Void CppCLRWinFormsProject::Form1::TextBox2_KeyDown(Object^ sender, KeyEventArgs^ e)
 {
     if (e->KeyCode == Keys::Enter) {
-        try {
-            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text);
-            this->label4->Text = this->label2->Text + this->textBox2->Text;
-            this->dataGridView2->Rows->Clear();
-            for each (array<String^> ^ rows in Range) {
-                this->dataGridView2->Rows->Add(rows);
+        if (Path::IsPathRooted(this->textBox2->Text) && Directory::Exists(this->textBox2->Text))
+        {
+            try {
+                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->textBox2->Text);
+                this->label4->Text = this->textBox2->Text;
+                this->dataGridView2->Rows->Clear();
+                for each (array<String^> ^ rows in Range) {
+                    this->dataGridView2->Rows->Add(rows);
+                }
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, неверный путь");
             }
         }
-        catch (String^ e) {
-            this->textBox2->Text = "";
-            CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
-            // Центрируем форму относительно окна
-            callProblemForm(e + "\nВозможно, неверный путь");
+        else {
+            try {
+                List<array<String^>^>^ Range = getFileDirectoryForDataGridView(this->label2->Text + this->textBox2->Text);
+                this->label4->Text = this->label2->Text + this->textBox2->Text;
+                this->dataGridView2->Rows->Clear();
+                for each (array<String^> ^ rows in Range) {
+                    this->dataGridView2->Rows->Add(rows);
+                }
+            }
+            catch (String^ e) {
+                CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(e);
+
+                callProblemForm(e + "\nВозможно, неверный путь");
+            }
         }
+        this->textBox2->Text = "";
         // Помечаем событие как обработанное, чтобы избежать дополнительной обработки клавиши Enter
         e->Handled = true;
         e->SuppressKeyPress = true;
@@ -162,52 +194,36 @@ System::Void CppCLRWinFormsProject::Form1::Form1_Load(System::Object^ sender, Sy
 
 System::Void CppCLRWinFormsProject::Form1::UpdateDataGridView1(String^ path)
 {
-    if (Directory::Exists(path))
-    {
         // Вызываем вашу функцию для обработки двойного щелчка на папке
         // ...
-        try {
-            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
-            this->label3->Text = path;
-            this->dataGridView1->Rows->Clear();
-            for each (array<String^> ^ rows in Range) {
-                this->dataGridView1->Rows->Add(rows);
-            }
-        }
-        catch (String^ e) {
-            throw e;
+    try {
+        List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
+        this->label3->Text = path;
+        this->dataGridView1->Rows->Clear();
+        for each (array<String^> ^ rows in Range) {
+            this->dataGridView1->Rows->Add(rows);
         }
     }
-}
+    catch (String^ e) {
+    throw e;
+    }
+}   
 
-System::Void CppCLRWinFormsProject::Form1::UpdateDataGridView2(String^ path)
-{
-    if (Directory::Exists(path))
+    System::Void CppCLRWinFormsProject::Form1::UpdateDataGridView2(String^ path)
     {
         // Вызываем вашу функцию для обработки двойного щелчка на папке
-        // ...
-        try {
-            List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
-            this->label4->Text = path;
-            this->dataGridView2->Rows->Clear();
-            for each (array<String^> ^ rows in Range) {
-                this->dataGridView2->Rows->Add(rows);
-            }
-        }
-        catch (String^ e) {
-            throw e;
+    // ...
+    try {
+        List<array<String^>^>^ Range = getFileDirectoryForDataGridView(path);
+        this->label4->Text = path;
+        this->dataGridView2->Rows->Clear();
+        for each (array<String^> ^ rows in Range) {
+        this->dataGridView2->Rows->Add(rows);
         }
     }
-}
-
-System::Void CppCLRWinFormsProject::Form1::callProblemForm(String^ problem)
-{
-    CppCLR_WinFormsProject1::ProblemForm^ newProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(problem);
-    // Центрируем форму относительно окна
-    newProblemForm->StartPosition = FormStartPosition::Manual;
-    newProblemForm->Left = (Screen::PrimaryScreen->Bounds.Width - newProblemForm->Width) / 2;
-    newProblemForm->Top = (Screen::PrimaryScreen->Bounds.Height - newProblemForm->Height) / 2;
-    newProblemForm->Show();
+    catch (String^ e) {
+        throw e;
+    }
 }
 
 System::Void CppCLRWinFormsProject::Form1::dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
@@ -220,7 +236,23 @@ System::Void CppCLRWinFormsProject::Form1::dataGridView1_CellDoubleClick(System:
         {
             String^ cellText = dataGridView1->Rows[e->RowIndex]->Cells[0]->Value->ToString();
             // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
-            UpdateDataGridView1(label3->Text + "\\" + cellText);
+            try {
+                UpdateDataGridView1(label3->Text + "\\" + cellText);
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, ошибка доступа");
+            }
+        }
+        else if (value == "<Папка> ")
+        {
+            String^ parentDirectory = Path::GetDirectoryName(label3->Text);
+            // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
+            try {
+                UpdateDataGridView1(parentDirectory);
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, файл удалён");
+            }
         }
     }
 }
@@ -235,7 +267,46 @@ System::Void CppCLRWinFormsProject::Form1::dataGridView2_CellDoubleClick(System:
         {
             String^ cellText = dataGridView2->Rows[e->RowIndex]->Cells[0]->Value->ToString();
             // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
-            UpdateDataGridView2(label4->Text + "\\" + cellText);
+            try {
+                UpdateDataGridView2(label4->Text + "\\" + cellText);
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, ошибка доступа");
+            }
+        }
+        else if (value == "<Папка> ")
+        {
+            String^ parentDirectory = Path::GetDirectoryName(label4->Text);
+            // Вызываем функцию UpdateDataGridView1 или выполняем необходимые действия
+            try {
+                UpdateDataGridView2(parentDirectory);
+            }
+            catch (String^ e) {
+                callProblemForm(e + "\nВозможно, файл удалён");
+            }
         }
     }
 }
+
+System::Void CppCLRWinFormsProject::Form1::callProblemForm(String^ problem)
+{
+    if (ProblemForm != nullptr)
+    {
+        ProblemForm->Close();
+        ProblemForm = nullptr; // Обнуляем ссылку на экземпляр Form2
+    }
+    ProblemForm = gcnew CppCLR_WinFormsProject1::ProblemForm(problem);
+    ProblemForm->Show();
+}
+
+System::Void CppCLRWinFormsProject::Form1::toolStripButton2_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    if (CopyForm != nullptr)
+    {
+        CopyForm->Close();
+        CopyForm = nullptr; // Обнуляем ссылку на экземпляр Form2
+    }
+    CopyForm = gcnew CppCLR_WinFormsProject1::CopyForm();
+    CopyForm->Show();
+}
+

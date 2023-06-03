@@ -1,4 +1,6 @@
 #pragma once
+#include "CopyForm.h"
+#include "ProblemForm.h"
 namespace CppCLRWinFormsProject {
 
 	using namespace System;
@@ -7,6 +9,7 @@ namespace CppCLRWinFormsProject {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace CppCLR_WinFormsProject1;
 
 	/// <summary>
 	/// Summary for Form1
@@ -46,11 +49,11 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::TreeView^ treeView2;
 	private: System::Windows::Forms::SplitContainer^ splitContainer2;
 	private: System::Windows::Forms::SplitContainer^ splitContainer1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
+
+
+
+
+
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
 	private: System::Windows::Forms::ToolStrip^ toolStrip1;
 	private: System::Windows::Forms::Label^ label2;
@@ -75,6 +78,19 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton2;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton3;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton4;
+
+
+
+
+
 
 
 
@@ -113,6 +129,9 @@ namespace CppCLRWinFormsProject {
 			   this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			   this->label2 = (gcnew System::Windows::Forms::Label());
 			   this->toolStrip2 = (gcnew System::Windows::Forms::ToolStrip());
+			   this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
+			   this->toolStripButton3 = (gcnew System::Windows::Forms::ToolStripButton());
+			   this->toolStripButton4 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->treeView2 = (gcnew System::Windows::Forms::TreeView());
 			   this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
 			   this->treeView1 = (gcnew System::Windows::Forms::TreeView());
@@ -135,6 +154,7 @@ namespace CppCLRWinFormsProject {
 			   this->splitContainer3->Panel2->SuspendLayout();
 			   this->splitContainer3->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
+			   this->toolStrip2->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->BeginInit();
 			   this->splitContainer2->Panel1->SuspendLayout();
 			   this->splitContainer2->Panel2->SuspendLayout();
@@ -221,13 +241,13 @@ namespace CppCLRWinFormsProject {
 					   this->Column7, this->Column8, this->Column9, this->Column10
 			   });
 			   this->dataGridView2->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->dataGridView2->Location = System::Drawing::Point(27, 36);
+			   this->dataGridView2->Location = System::Drawing::Point(33, 36);
 			   this->dataGridView2->Name = L"dataGridView2";
 			   this->dataGridView2->ReadOnly = true;
 			   this->dataGridView2->RowHeadersVisible = false;
 			   this->dataGridView2->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			   this->dataGridView2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			   this->dataGridView2->Size = System::Drawing::Size(447, 555);
+			   this->dataGridView2->Size = System::Drawing::Size(441, 555);
 			   this->dataGridView2->TabIndex = 2;
 			   this->dataGridView2->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView2_CellDoubleClick);
 			   // 
@@ -236,6 +256,7 @@ namespace CppCLRWinFormsProject {
 			   this->Column6->HeaderText = L"Имя";
 			   this->Column6->Name = L"Column6";
 			   this->Column6->ReadOnly = true;
+			   this->Column6->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   this->Column6->Width = 200;
 			   // 
 			   // Column7
@@ -243,18 +264,21 @@ namespace CppCLRWinFormsProject {
 			   this->Column7->HeaderText = L"Тип";
 			   this->Column7->Name = L"Column7";
 			   this->Column7->ReadOnly = true;
+			   this->Column7->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column8
 			   // 
 			   this->Column8->HeaderText = L"Размер";
 			   this->Column8->Name = L"Column8";
 			   this->Column8->ReadOnly = true;
+			   this->Column8->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column9
 			   // 
 			   this->Column9->HeaderText = L"Дата";
 			   this->Column9->Name = L"Column9";
 			   this->Column9->ReadOnly = true;
+			   this->Column9->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column10
 			   // 
@@ -262,12 +286,13 @@ namespace CppCLRWinFormsProject {
 			   this->Column10->HeaderText = L"Атрибуты";
 			   this->Column10->Name = L"Column10";
 			   this->Column10->ReadOnly = true;
+			   this->Column10->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // label4
 			   // 
 			   this->label4->AutoSize = true;
 			   this->label4->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label4->Location = System::Drawing::Point(27, 23);
+			   this->label4->Location = System::Drawing::Point(33, 23);
 			   this->label4->Name = L"label4";
 			   this->label4->Size = System::Drawing::Size(31, 13);
 			   this->label4->TabIndex = 5;
@@ -287,7 +312,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->label2->AutoSize = true;
 			   this->label2->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label2->Location = System::Drawing::Point(27, 0);
+			   this->label2->Location = System::Drawing::Point(33, 0);
 			   this->label2->Name = L"label2";
 			   this->label2->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
 			   this->label2->Size = System::Drawing::Size(26, 23);
@@ -297,12 +322,44 @@ namespace CppCLRWinFormsProject {
 			   // toolStrip2
 			   // 
 			   this->toolStrip2->Dock = System::Windows::Forms::DockStyle::Left;
+			   this->toolStrip2->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				   this->toolStripButton2,
+					   this->toolStripButton3, this->toolStripButton4
+			   });
 			   this->toolStrip2->Location = System::Drawing::Point(0, 0);
 			   this->toolStrip2->Name = L"toolStrip2";
 			   this->toolStrip2->Padding = System::Windows::Forms::Padding(1, 150, 1, 0);
-			   this->toolStrip2->Size = System::Drawing::Size(27, 591);
+			   this->toolStrip2->Size = System::Drawing::Size(33, 591);
 			   this->toolStrip2->TabIndex = 1;
 			   this->toolStrip2->Text = L"toolStrip2";
+			   // 
+			   // toolStripButton2
+			   // 
+			   this->toolStripButton2->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			   this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
+			   this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
+			   this->toolStripButton2->Name = L"toolStripButton2";
+			   this->toolStripButton2->Size = System::Drawing::Size(28, 20);
+			   this->toolStripButton2->Text = L"toolStripButton2";
+			   this->toolStripButton2->Click += gcnew System::EventHandler(this, &Form1::toolStripButton2_Click);
+			   // 
+			   // toolStripButton3
+			   // 
+			   this->toolStripButton3->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			   this->toolStripButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton3.Image")));
+			   this->toolStripButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
+			   this->toolStripButton3->Name = L"toolStripButton3";
+			   this->toolStripButton3->Size = System::Drawing::Size(20, 20);
+			   this->toolStripButton3->Text = L"toolStripButton3";
+			   // 
+			   // toolStripButton4
+			   // 
+			   this->toolStripButton4->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			   this->toolStripButton4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton4.Image")));
+			   this->toolStripButton4->ImageTransparentColor = System::Drawing::Color::Magenta;
+			   this->toolStripButton4->Name = L"toolStripButton4";
+			   this->toolStripButton4->Size = System::Drawing::Size(20, 20);
+			   this->toolStripButton4->Text = L"toolStripButton4";
 			   // 
 			   // treeView2
 			   // 
@@ -374,6 +431,7 @@ namespace CppCLRWinFormsProject {
 			   this->Column1->Name = L"Column1";
 			   this->Column1->ReadOnly = true;
 			   this->Column1->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			   this->Column1->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   this->Column1->Width = 200;
 			   // 
 			   // Column2
@@ -381,18 +439,21 @@ namespace CppCLRWinFormsProject {
 			   this->Column2->HeaderText = L"Тип";
 			   this->Column2->Name = L"Column2";
 			   this->Column2->ReadOnly = true;
+			   this->Column2->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column3
 			   // 
 			   this->Column3->HeaderText = L"Размер";
 			   this->Column3->Name = L"Column3";
 			   this->Column3->ReadOnly = true;
+			   this->Column3->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column4
 			   // 
 			   this->Column4->HeaderText = L"Дата";
 			   this->Column4->Name = L"Column4";
 			   this->Column4->ReadOnly = true;
+			   this->Column4->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // Column5
 			   // 
@@ -400,6 +461,7 @@ namespace CppCLRWinFormsProject {
 			   this->Column5->HeaderText = L"Атрибуты";
 			   this->Column5->Name = L"Column5";
 			   this->Column5->ReadOnly = true;
+			   this->Column5->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			   // 
 			   // label3
 			   // 
@@ -489,6 +551,8 @@ namespace CppCLRWinFormsProject {
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer3))->EndInit();
 			   this->splitContainer3->ResumeLayout(false);
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
+			   this->toolStrip2->ResumeLayout(false);
+			   this->toolStrip2->PerformLayout();
 			   this->splitContainer2->Panel1->ResumeLayout(false);
 			   this->splitContainer2->Panel2->ResumeLayout(false);
 			   this->splitContainer2->Panel2->PerformLayout();
@@ -520,5 +584,8 @@ namespace CppCLRWinFormsProject {
 		private: System::Void callProblemForm(String^ problem);
 		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 		private: System::Void dataGridView2_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+		private: CopyForm^ CopyForm;
+		private: ProblemForm^ ProblemForm;
+		private: System::Void toolStripButton2_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
