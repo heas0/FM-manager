@@ -306,7 +306,27 @@ System::Void CppCLRWinFormsProject::Form1::toolStripButton2_Click(System::Object
         CopyForm->Close();
         CopyForm = nullptr; // Обнуляем ссылку на экземпляр Form2
     }
-    CopyForm = gcnew CppCLR_WinFormsProject1::CopyForm();
-    CopyForm->Show();
+    // Получение выделенных строк и добавление текста из первой ячейки в список
+    List<String^>^ selectedTextList = gcnew List<String^>();
+    for each (DataGridViewRow ^ row in dataGridView1->SelectedRows)
+    {
+        String^ cellText = row->Cells[0]->Value->ToString(); // Получение текста из первой ячейки
+        selectedTextList->Add(label3->Text + "\\" + cellText); // Добавление пути родительского каталога + имя файла в список
+    }
+    // Проверка условия
+    if (dataGridView1->SelectedRows->Count > 0 &&
+        dataGridView1->Rows[0]->Selected &&
+        dataGridView1->Rows[0]->Cells[2]->Value->ToString() == "<Папка> ")
+    {
+        selectedTextList->RemoveAt(0);
+    }
+    if (selectedTextList->Count > 0) {
+        // Создаем экземпляр формы CopyForm и передаем ей список с текстами ячеек и путь копирования
+        CopyForm = gcnew CppCLR_WinFormsProject1::CopyForm(selectedTextList, this->label4->Text);
+        CopyForm->Show();
+    }
+    else {
+        callProblemForm("Не выделен ни один объект,\nРодительский каталог не копируется!");
+    }
 }
 

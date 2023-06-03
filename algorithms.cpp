@@ -152,3 +152,26 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
         // Можно добавить соответствующую логику обработки ошибок здесь
     }
 }
+
+void CopyDirectory(String^ sourcePath, String^ destinationPath) {
+    // Получаем список всех файлов в исходной папке
+    array<String^>^ files = Directory::GetFiles(sourcePath);
+
+    // Копируем каждый файл в целевую папку
+    for each (String ^ file in files) {
+        String^ filename = Path::GetFileName(file);
+        String^ destinationFile = Path::Combine(destinationPath, filename);
+        File::Copy(file, destinationFile);
+    }
+
+    // Получаем список всех подпапок в исходной папке
+    array<String^>^ folders = Directory::GetDirectories(sourcePath);
+
+    // Рекурсивно копируем каждую подпапку в целевую папку
+    for each (String ^ folder in folders) {
+        String^ foldername = Path::GetFileName(folder);
+        String^ destinationFolder = Path::Combine(destinationPath, foldername);
+        Directory::CreateDirectory(destinationFolder);
+        CopyDirectory(folder, destinationFolder);
+    }
+}

@@ -41,19 +41,9 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::SplitContainer^ splitContainer3;
 	private: System::Windows::Forms::DataGridView^ dataGridView2;
 	private: System::Windows::Forms::ToolStrip^ toolStrip2;
-
-
-
-
-
 	private: System::Windows::Forms::TreeView^ treeView2;
 	private: System::Windows::Forms::SplitContainer^ splitContainer2;
 	private: System::Windows::Forms::SplitContainer^ splitContainer1;
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
 	private: System::Windows::Forms::ToolStrip^ toolStrip1;
 	private: System::Windows::Forms::Label^ label2;
@@ -61,11 +51,6 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-
-
-
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
@@ -86,19 +71,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton2;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton3;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton4;
-
-
-
-
-
-
-
-
-
-
-
-
-
+	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
 	private: System::ComponentModel::IContainer^ components;
 		   /// <summary>
 		   /// Required designer variable.
@@ -112,6 +85,7 @@ namespace CppCLRWinFormsProject {
 		/// </summary>
 		   void InitializeComponent(void)
 		   {
+			   this->components = (gcnew System::ComponentModel::Container());
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -148,6 +122,7 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			   this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
 			   this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
+			   this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			   this->menuStrip1->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer3))->BeginInit();
 			   this->splitContainer3->Panel1->SuspendLayout();
@@ -241,13 +216,13 @@ namespace CppCLRWinFormsProject {
 					   this->Column7, this->Column8, this->Column9, this->Column10
 			   });
 			   this->dataGridView2->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->dataGridView2->Location = System::Drawing::Point(33, 36);
+			   this->dataGridView2->Location = System::Drawing::Point(25, 36);
 			   this->dataGridView2->Name = L"dataGridView2";
 			   this->dataGridView2->ReadOnly = true;
 			   this->dataGridView2->RowHeadersVisible = false;
 			   this->dataGridView2->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			   this->dataGridView2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			   this->dataGridView2->Size = System::Drawing::Size(441, 555);
+			   this->dataGridView2->Size = System::Drawing::Size(449, 555);
 			   this->dataGridView2->TabIndex = 2;
 			   this->dataGridView2->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView2_CellDoubleClick);
 			   // 
@@ -292,7 +267,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->label4->AutoSize = true;
 			   this->label4->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label4->Location = System::Drawing::Point(33, 23);
+			   this->label4->Location = System::Drawing::Point(25, 23);
 			   this->label4->Name = L"label4";
 			   this->label4->Size = System::Drawing::Size(31, 13);
 			   this->label4->TabIndex = 5;
@@ -312,7 +287,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->label2->AutoSize = true;
 			   this->label2->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label2->Location = System::Drawing::Point(33, 0);
+			   this->label2->Location = System::Drawing::Point(25, 0);
 			   this->label2->Name = L"label2";
 			   this->label2->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
 			   this->label2->Size = System::Drawing::Size(26, 23);
@@ -329,7 +304,7 @@ namespace CppCLRWinFormsProject {
 			   this->toolStrip2->Location = System::Drawing::Point(0, 0);
 			   this->toolStrip2->Name = L"toolStrip2";
 			   this->toolStrip2->Padding = System::Windows::Forms::Padding(1, 150, 1, 0);
-			   this->toolStrip2->Size = System::Drawing::Size(33, 591);
+			   this->toolStrip2->Size = System::Drawing::Size(25, 591);
 			   this->toolStrip2->TabIndex = 1;
 			   this->toolStrip2->Text = L"toolStrip2";
 			   // 
@@ -339,7 +314,7 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
 			   this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
 			   this->toolStripButton2->Name = L"toolStripButton2";
-			   this->toolStripButton2->Size = System::Drawing::Size(28, 20);
+			   this->toolStripButton2->Size = System::Drawing::Size(20, 20);
 			   this->toolStripButton2->Text = L"toolStripButton2";
 			   this->toolStripButton2->Click += gcnew System::EventHandler(this, &Form1::toolStripButton2_Click);
 			   // 
@@ -529,6 +504,11 @@ namespace CppCLRWinFormsProject {
 			   this->toolStrip1->TabIndex = 1;
 			   this->toolStrip1->Text = L"toolStrip1";
 			   // 
+			   // contextMenuStrip1
+			   // 
+			   this->contextMenuStrip1->Name = L"contextMenuStrip1";
+			   this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
+			   // 
 			   // Form1
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -569,7 +549,6 @@ namespace CppCLRWinFormsProject {
 			   this->PerformLayout();
 
 		   }
-#pragma endregion
 		private: System::Void TextBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		private: System::Void TextBox2_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 		private: System::Void treeView_AfterExpand(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e);
@@ -587,5 +566,6 @@ namespace CppCLRWinFormsProject {
 		private: CopyForm^ CopyForm;
 		private: ProblemForm^ ProblemForm;
 		private: System::Void toolStripButton2_Click(System::Object^ sender, System::EventArgs^ e);
-};
+	};
 }
+#pragma endregion

@@ -22,6 +22,7 @@ namespace CppCLR_WinFormsProject1 {
 			//TODO: добавьте код конструктора
 			// 
 			this->label1->Text = Problem;
+			this->ClientSize = System::Drawing::Size(300, 100 + label1->Height);
 		}
 	protected:
 		/// <summary>
@@ -64,7 +65,7 @@ namespace CppCLR_WinFormsProject1 {
 			this->label1->AutoSize = true;
 			this->label1->ImageAlign = System::Drawing::ContentAlignment::TopLeft;
 			this->label1->Location = System::Drawing::Point(84, 19);
-			this->label1->MaximumSize = System::Drawing::Size(200, 120);
+			this->label1->MaximumSize = System::Drawing::Size(200, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(47, 17);
 			this->label1->TabIndex = 0;
@@ -82,12 +83,12 @@ namespace CppCLR_WinFormsProject1 {
 			// 
 			// ProblemForm
 			// 
-			this->StartPosition = FormStartPosition::Manual;
-			this->Left = (Screen::PrimaryScreen->Bounds.Width - this->Width) / 2;
-			this->Top = (Screen::PrimaryScreen->Bounds.Height - this->Height) / 2;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+			this->Left = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Width - this->Width) / 2;
+			this->Top = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Height - this->Height) / 2;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 111);
+			this->ClientSize = System::Drawing::Size(300, 100);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
@@ -98,7 +99,6 @@ namespace CppCLR_WinFormsProject1 {
 			this->PerformLayout();
 
 		}
-	
-#pragma endregion
 	};
 }
+#pragma endregion
