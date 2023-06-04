@@ -1,6 +1,7 @@
 #pragma once
 #include "CopyForm.h"
 #include "ProblemForm.h"
+#include "MoveForm.h"
 namespace CppCLRWinFormsProject {
 
 	using namespace System;
@@ -326,6 +327,7 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton3->Name = L"toolStripButton3";
 			   this->toolStripButton3->Size = System::Drawing::Size(20, 20);
 			   this->toolStripButton3->Text = L"toolStripButton3";
+			   this->toolStripButton3->Click += gcnew System::EventHandler(this, &Form1::toolStripButton3_Click);
 			   // 
 			   // toolStripButton4
 			   // 
@@ -566,6 +568,10 @@ namespace CppCLRWinFormsProject {
 		private: CopyForm^ CopyForm;
 		private: ProblemForm^ ProblemForm;
 		private: System::Void toolStripButton2_Click(System::Object^ sender, System::EventArgs^ e);
-	};
+		private: System::Void ÑopyForm_CopyFormClosed(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void toolStripButton3_Click(System::Object^ sender, System::EventArgs^ e);
+		private: MoveForm^ MoveForm;
+		private: System::Void MoveForm_MoveFormClosed(System::Object^ sender, System::EventArgs^ e);
+};
 }
 #pragma endregion

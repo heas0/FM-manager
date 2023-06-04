@@ -23,6 +23,9 @@ namespace CppCLR_WinFormsProject1 {
 			// 
 			this->label1->Text = Problem;
 			this->ClientSize = System::Drawing::Size(300, 100 + label1->Height);
+			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+			this->Left = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Width - this->Width) / 2;
+			this->Top = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Height - this->Height) / 2;
 		}
 	protected:
 		/// <summary>
@@ -83,9 +86,6 @@ namespace CppCLR_WinFormsProject1 {
 			// 
 			// ProblemForm
 			// 
-			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
-			this->Left = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Width - this->Width) / 2;
-			this->Top = (System::Windows::Forms::Screen::PrimaryScreen->Bounds.Height - this->Height) / 2;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(300, 100);

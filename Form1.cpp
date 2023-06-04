@@ -323,10 +323,59 @@ System::Void CppCLRWinFormsProject::Form1::toolStripButton2_Click(System::Object
     if (selectedTextList->Count > 0) {
         // Создаем экземпляр формы CopyForm и передаем ей список с текстами ячеек и путь копирования
         CopyForm = gcnew CppCLR_WinFormsProject1::CopyForm(selectedTextList, this->label4->Text);
+        CopyForm->CopyFormClosed += gcnew System::EventHandler(this, &Form1::СopyForm_CopyFormClosed);
         CopyForm->Show();
     }
     else {
         callProblemForm("Не выделен ни один объект,\nРодительский каталог не копируется!");
     }
 }
+System::Void CppCLRWinFormsProject::Form1::СopyForm_CopyFormClosed(System::Object^ sender, System::EventArgs^ e)
+{
+    if (CopyForm->status != "Ok") {
+        callProblemForm(CopyForm->status);
+    }
+    UpdateDataGridView1(label3->Text);
+    UpdateDataGridView2(label4->Text);
+}
 
+System::Void CppCLRWinFormsProject::Form1::toolStripButton3_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    if (MoveForm != nullptr)
+    {
+        MoveForm->Close();
+        MoveForm = nullptr; // Обнуляем ссылку на экземпляр Form2
+    }
+    // Получение выделенных строк и добавление текста из первой ячейки в список
+    List<String^>^ selectedTextList = gcnew List<String^>();
+    for each (DataGridViewRow ^ row in dataGridView1->SelectedRows)
+    {
+        String^ cellText = row->Cells[0]->Value->ToString(); // Получение текста из первой ячейки
+        selectedTextList->Add(label3->Text + "\\" + cellText); // Добавление пути родительского каталога + имя файла в список
+    }
+    // Проверка условия
+    if (dataGridView1->SelectedRows->Count > 0 &&
+        dataGridView1->Rows[0]->Selected &&
+        dataGridView1->Rows[0]->Cells[2]->Value->ToString() == "<Папка> ")
+    {
+        selectedTextList->RemoveAt(0);
+    }
+    if (selectedTextList->Count > 0) {
+        // Создаем экземпляр формы CopyForm и передаем ей список с текстами ячеек и путь копирования
+        MoveForm = gcnew CppCLR_WinFormsProject1::MoveForm(selectedTextList, this->label4->Text);
+        MoveForm->MoveFormClosed += gcnew System::EventHandler(this, &Form1::MoveForm_MoveFormClosed);
+        MoveForm->Show();
+    }
+    else {
+        callProblemForm("Не выделен ни один объект,\nРодительский каталог не копируется!");
+    }
+}
+
+System::Void CppCLRWinFormsProject::Form1::MoveForm_MoveFormClosed(System::Object^ sender, System::EventArgs^ e)
+{
+    if (MoveForm->status != "Ok") {
+        callProblemForm(MoveForm->status);
+    }
+    UpdateDataGridView1(label3->Text);
+    UpdateDataGridView2(label4->Text);
+}
