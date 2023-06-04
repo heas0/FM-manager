@@ -421,3 +421,6 @@ System::Void CppCLRWinFormsProject::Form1::DeleteForm_DeleteFormClosed(System::O
     UpdateDataGridView1(label3->Text);
     UpdateDataGridView2(label4->Text);
 }
+System::Void CppCLRWinFormsProject::Form1::ClosingTheProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+    this->Close();
+}

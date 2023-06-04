@@ -74,6 +74,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton3;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton4;
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^ выход»зѕрограммыToolStripMenuItem;
 	private: System::ComponentModel::IContainer^ components;
 		   /// <summary>
 		   /// Required designer variable.
@@ -91,6 +92,7 @@ namespace CppCLRWinFormsProject {
 			   System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			   this->выход»зѕрограммыToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->UpdateLeftTreeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->UpdateRightTreeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -156,9 +158,17 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   // toolStripMenuItem1
 			   // 
+			   this->toolStripMenuItem1->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->выход»зѕрограммыToolStripMenuItem });
 			   this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
 			   this->toolStripMenuItem1->Size = System::Drawing::Size(53, 20);
 			   this->toolStripMenuItem1->Text = L"ћеню";
+			   // 
+			   // выход»зѕрограммыToolStripMenuItem
+			   // 
+			   this->выход»зѕрограммыToolStripMenuItem->Name = L"выход»зѕрограммыToolStripMenuItem";
+			   this->выход»зѕрограммыToolStripMenuItem->Size = System::Drawing::Size(196, 22);
+			   this->выход»зѕрограммыToolStripMenuItem->Text = L"«акрытие программы";
+			   this->выход»зѕрограммыToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::ClosingTheProgramToolStripMenuItem_Click);
 			   // 
 			   // toolStripMenuItem2
 			   // 
@@ -216,13 +226,13 @@ namespace CppCLRWinFormsProject {
 					   this->Column7, this->Column8, this->Column9, this->Column10
 			   });
 			   this->dataGridView2->Dock = System::Windows::Forms::DockStyle::Fill;
-			   this->dataGridView2->Location = System::Drawing::Point(33, 36);
+			   this->dataGridView2->Location = System::Drawing::Point(25, 36);
 			   this->dataGridView2->Name = L"dataGridView2";
 			   this->dataGridView2->ReadOnly = true;
 			   this->dataGridView2->RowHeadersVisible = false;
 			   this->dataGridView2->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			   this->dataGridView2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			   this->dataGridView2->Size = System::Drawing::Size(441, 555);
+			   this->dataGridView2->Size = System::Drawing::Size(449, 555);
 			   this->dataGridView2->TabIndex = 2;
 			   this->dataGridView2->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::dataGridView2_CellDoubleClick);
 			   // 
@@ -267,7 +277,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->label4->AutoSize = true;
 			   this->label4->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label4->Location = System::Drawing::Point(33, 23);
+			   this->label4->Location = System::Drawing::Point(25, 23);
 			   this->label4->Name = L"label4";
 			   this->label4->Size = System::Drawing::Size(31, 13);
 			   this->label4->TabIndex = 5;
@@ -287,7 +297,7 @@ namespace CppCLRWinFormsProject {
 			   // 
 			   this->label2->AutoSize = true;
 			   this->label2->Dock = System::Windows::Forms::DockStyle::Top;
-			   this->label2->Location = System::Drawing::Point(33, 0);
+			   this->label2->Location = System::Drawing::Point(25, 0);
 			   this->label2->Name = L"label2";
 			   this->label2->Padding = System::Windows::Forms::Padding(5, 5, 0, 5);
 			   this->label2->Size = System::Drawing::Size(26, 23);
@@ -304,7 +314,7 @@ namespace CppCLRWinFormsProject {
 			   this->toolStrip2->Location = System::Drawing::Point(0, 0);
 			   this->toolStrip2->Name = L"toolStrip2";
 			   this->toolStrip2->Padding = System::Windows::Forms::Padding(1, 150, 1, 0);
-			   this->toolStrip2->Size = System::Drawing::Size(33, 591);
+			   this->toolStrip2->Size = System::Drawing::Size(25, 591);
 			   this->toolStrip2->TabIndex = 1;
 			   this->toolStrip2->Text = L"toolStrip2";
 			   // 
@@ -314,8 +324,8 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
 			   this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
 			   this->toolStripButton2->Name = L"toolStripButton2";
-			   this->toolStripButton2->Size = System::Drawing::Size(28, 20);
-			   this->toolStripButton2->Text = L" опировать файлы";
+			   this->toolStripButton2->Size = System::Drawing::Size(20, 20);
+			   this->toolStripButton2->Text = L" опировать файлы (из левого в правый список)";
 			   this->toolStripButton2->Click += gcnew System::EventHandler(this, &Form1::toolStripButton2_Click);
 			   // 
 			   // toolStripButton3
@@ -324,8 +334,8 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton3.Image")));
 			   this->toolStripButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
 			   this->toolStripButton3->Name = L"toolStripButton3";
-			   this->toolStripButton3->Size = System::Drawing::Size(28, 20);
-			   this->toolStripButton3->Text = L"ѕереместить файлы";
+			   this->toolStripButton3->Size = System::Drawing::Size(20, 20);
+			   this->toolStripButton3->Text = L"ѕереместить файлы (из левого в правый список)";
 			   this->toolStripButton3->Click += gcnew System::EventHandler(this, &Form1::toolStripButton3_Click);
 			   // 
 			   // toolStripButton4
@@ -334,8 +344,8 @@ namespace CppCLRWinFormsProject {
 			   this->toolStripButton4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton4.Image")));
 			   this->toolStripButton4->ImageTransparentColor = System::Drawing::Color::Magenta;
 			   this->toolStripButton4->Name = L"toolStripButton4";
-			   this->toolStripButton4->Size = System::Drawing::Size(28, 20);
-			   this->toolStripButton4->Text = L"”далить файлы";
+			   this->toolStripButton4->Size = System::Drawing::Size(20, 20);
+			   this->toolStripButton4->Text = L"”далить файлы (из левого в правый список)";
 			   this->toolStripButton4->Click += gcnew System::EventHandler(this, &Form1::toolStripButton4_Click);
 			   // 
 			   // treeView2
@@ -563,6 +573,7 @@ namespace CppCLRWinFormsProject {
 		private: DeleteForm^ DeleteForm;
 		private: System::Void DeleteForm_DeleteFormClosed(System::Object^ sender, System::EventArgs^ e);
 		private: System::Void toolStripButton4_Click(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void ClosingTheProgramToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
 #pragma endregion
