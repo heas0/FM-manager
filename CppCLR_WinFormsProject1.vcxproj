@@ -134,6 +134,9 @@
     <ClInclude Include="CopyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="DeleteForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -152,6 +155,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CopyForm.cpp" />
     <ClCompile Include="CppCLR_WinFormsProject.cpp" />
+    <ClCompile Include="DeleteForm.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="MoveForm.cpp" />
     <ClCompile Include="pch.cpp">
@@ -175,6 +179,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CopyForm.resx">
       <DependentUpon>CopyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteForm.resx">
+      <DependentUpon>DeleteForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>

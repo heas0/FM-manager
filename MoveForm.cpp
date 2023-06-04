@@ -2,9 +2,7 @@
 #include "MoveForm.h"
 #include <string>
 #include <vector>
-#include <Windows.h>
 #include "algorithms.h"
-#include "ProblemForm.h"
 using namespace System;
 using namespace System::IO;
 using namespace CppCLR_WinFormsProject1;
@@ -13,21 +11,21 @@ System::Void CppCLR_WinFormsProject1::MoveForm::button1_Click(System::Object^ se
 {
     try {
         for each (String ^ path in paths) {
-            // Копируем файлы
+            // Перемещаем файлы
             if (File::Exists(path)) {
                 // Получаем имя файл
                 String^ filename = Path::GetFileName(path);
                 // Формируем путь для перемещения файл
-                String^ destinationPath = Path::Combine(outputPath, filename);
+                String^ destinationPath = Path::Combine(textBox1->Text + "\\", filename);
                 // Перемещаем Файл
                 File::Move(path, destinationPath);
             }
-            // Копируем папки
+            // Перемещаем папки
             else if (Directory::Exists(path)) {
                 // Получаем имя каталога
                 String^ foldername = Path::GetFileName(path);
                 // Формируем путь для перемещения каталога
-                String^ destinationPath = Path::Combine(outputPath, foldername);
+                String^ destinationPath = Path::Combine(textBox1->Text + "\\", foldername);
                 // Перемещаем каталог
                 Directory::Move(path, destinationPath);
             }
