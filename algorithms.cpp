@@ -145,7 +145,7 @@ void AddDirectoriesAndFilesToTreeView(String^ directoryPath, TreeNode^ parentNod
             }
         }
     }
-    catch (Exception^ ex)
+    catch (Exception^)
     {
         return;
         // Обработка ошибок при доступе к файлам/каталогам
